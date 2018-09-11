@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sean Santarossa - Bootstrap</title>
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+  <link href="styles.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/css/lightbox.css" rel="stylesheet">
+</head>
+<body>
+	
+<header>  
+<nav class="navbar navbar-expand-md navbar-light sticky-top">
+  
+  <button class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#collapse_target">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapse_target">
+      <a class="navbar-brand" href="../index.html">
+        <span class="navbar-text">Sean Santarossa</span>
+      </a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Capstone</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../Seanify/index.php">Seanify</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../Final_ThreeJS_Scene/index.html">3D Model</a>
+        </li>
+      </ul>
+  </div>
+
+</nav>
+</header>
+
+<!-- Landing and Problem Statement -->
+<section>
+<div class="top-header">
+	<div id="fade-content"><h1>As engineers, we are in a position to change the world – not just study it.</h1> </div>
+	<div class="content">
+		<h1>The Intelligent IoT HVAC Control System</h1>
+		<a href="../images/capstone-cropped.jpg" data-lightbox="main"> <img src="../images/capstone-cropped.jpg"> </a>
+	</div>
+
+</div>
+
+<div class="problem-statement-wrapper medium">
+	<div class="problem-statement">
+		<h3>Revolutionizing Residential Heating and Cooling Systems</h3>
+		<p>The Intelligent IoT HVAC Control System project is the capstone project completed by Sean Santarossa and Eric Parker for their final year at the University of Windsor is an all-in-one solution
+			for modernizing current conventional residential heating and cooling systems. Before an introduction to the solution done by the team, it is best to introduce the problem. The goal of the Intelligent HVAC IoT Control System capstone project was to solve a very common problem experienced in many residential buildings: poor heat distribution. For example, it is very common for the ambient temperature of the basement of homes to be considerably colder than that on higher levels due to the fact that warm air tends to rise. this effect is illustrated in the figure below. </p>
+			<img src="images/capstone-1.jpg">
+	</div>
+
+	<div class="content-wrapper">
+			<p>One solution to this problem is to deploy an approach known as HVAC zoning. A zoned heating and cooling system divides a home into different areas (called zones) that are each controlled separately by their own thermostat. For example, a homeowner might install separate thermostats in the basement, main level, and upstairs allowing the central forced air system to use feedback from each of the thermostats to determine when and to which zones to supply heat. However, as described previously, the central forced air system is only capable of operating in two states: on or off. Thus, how is it possible to use the temperature information collected from each zone to independently control the temperature of each? The solution is dampers. Dampers are electronically controlled variable valves that control the flow of heated or cooled air throughout a home. Shown in the Figure below is a typical zoning configuration installed in a central forced air system with the dampers highlighted in red.</p>
+			<img id="conventional-hetaing" src="images/capstone-2.png">
+			<p>Zoning systems are traditionally implemented by installing dampers directly in the air ducts just as the system shown in the Figure above illustrates. There are a few major problems with this approach, namely the fact that the damper installation procedure is very expensive and invasive, and the user is limited to the number of zones that they install (for example, installing three dampers allows for a maximum of three independently controlled zones).
+			The main objective of this capstone project was to provide an effective and economical implementation of zone temperature control that is dynamic, extensible, and noninvasive to address the issues currently experienced with traditional zoning systems.</p>
+		</div>
+</div>
+
+</section>
+
+<!-- High-Level Overview -->
+<section class="light" >
+	<h1> High Level Overview</h1>
+	<div class="high-level-overview">
+		<p> To achieve the objective of providing a zoned temperature control system that is dynamic, extensible, and noninvasive, the team had to develop an entirely new approach to zoning. 
+			The result of this new approach and equivalent modelling is that the dampers used in modern zoning systems can be placed anywhere along the path of heat transfer for a given zone. The team’s solution then is to move the damper out of the ducts and in to the vents. Since the relative position of the damper in each zone has no effect on the resulting flow, this paradigm shift is theoretically sound and provides a competitive advantage over traditional systems since the need for an expensive and invasive installation is completely eliminated.
+		</p>
+		
+		<div id="list-wrapper">
+			<p>To implement this system the team chose to use three hardware units:</p>
+		<ul>
+			<li>Main Hub Thermostat</li>
+			<li>Room Temperature Sensor</li>
+			<li>Smart Vent</li>
+		</ul>
+		</div>
+		
+		<p>Each of these units communicates with one another using a propietary 2.4GHz protocol developed by the team. The main hub thermostat unit functions as the central control unit for all devices on the wireless network. It is an internet-connected thermostat capable of receiving temperature data from all zones, using the data to make intelligent decisions about how heat should be distributed, and issuing resulting commands to dampers in each zone. </p>
+		<p>The room temperature sensor devices are used to monitor the conditions of supplementary zones to the network. An independently controlled zone is created for each room temperature sensor that is added to the network. The units are directly paired with both the main hub thermostat and their respective dampers acting as relay points for information; they measure and send temperature information about their zone to the main hub thermostat and forward control messages from the main hub thermostat to the dampers in their zone to achieve actuation.</p>
+		<p>The smart vent devices implement the dampers associated with each zone. These smart vents are paired with a room temperature sensor and function just as a traditional air duct damper does to establish a means of control for a particular zone.</p>
+		<a href="images/network-overview.jpg" data-lightbox="high-level-overview"> <img src="images/network-overview.jpg"> </a>
+		<p> Shown in the Figure above is a typcal setup for the system. There are three seperate temperature zones created. Zone 1 consistes of the main hub thermostat and a smart vent - directly
+			connected to it, Zone 2 and 3 each consist of a room temperature sensor (that communicates its respective temperature reading to the main hub thermostate and listens for commands from the main hub) and smart vents. The result is three independent temperature zones from two room temperature sensors and a main hub thermostat. </p>
+		<p> Perhaps the most impressive feature of the system is its extensibility. For example that if the consumer wants to add more zones to this network over time they simply purchase another room 		temperature sensor and a couple more smart vents and pair them to the existing network. This greatly reduces upfront installation costs as the consumer can purchase and create zones over months 	  and years rather than having to purchase the entire system at one time.
+		</p>
+	</div>
+	
+</section>
+
+
+<!-- Carousel -->
+<section class="carousel-section dark">
+	<h1 id="margin-fix">Main Hub</h1>
+	<div class="content-wrapper">
+		<p> The main hub thermostat is the central control device in the network, it replaces the thermostat in conventional residential HVAC systems. Its main purpose is 
+		to adminstrate the network by communicating with room temperature sensors to determine when to open and close the smart vents distributed throughout the zones. The main hub thermostat
+		can be directly controlled using its built in touchscreen or through a custom-built web interface that can be accessed online. From the touchscreen consumers can set the temperature of zones,
+		view Wi-Fi settings, calibrate the temperature of thermostat and view the structure of the network/connected devices to view the current temperature of the zones and the battery levels of the devices in each zone. The thermostat builts a graphical representation of the network that updates as more room temperature sensors and smart vents are added, this provides the consumer a top-down view of the entire system. Check out the carousel below to get a close look!
+		</p>
+	</div>
+	
+	<div class="container">
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
+			  <ol class="carousel-indicators">
+			    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+			    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+			    <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+			  </ol>
+			  <div class="carousel-inner">
+			    <div class="carousel-item active">
+				  <div class="image-wrapper">
+				  	<img id="hub-circuit" src="images/Main-Hub.png">
+				  </div>
+				  <div class="text-wrapper">
+				    <h5>Circuit of Main Hub</h5>
+				    <p>The physical components that make up the main hub thermostat circuit are shown in the Figure above. Highlighted in purple is the
+				    	touchscreen circuitry, highlighted in red is the Particle Photon microcontroller, and lastly, highlighted in green is the 
+				    	wireless module (along with supporting circuitry). This entire circuit is directly connected to the HMI touchscreen and is hardwired 
+				    	into the home - replacing the existing thermostat used in conventional HVAC systems. </p>
+				  </div>
+				</div>
+			    <div class="carousel-item">
+			      <div class="image-wrapper">
+				  	<img id="HMI-1" src="images/HMI-1-cropped.jpg">
+				  </div>
+				  <div class="text-wrapper">
+				    <h5>HMI Interface Home Page</h5>
+				    <p>The main operational screen displays temperature and control information about each zone including the name, current temperature, and allowable temperature range of the selected zone. The user can change the selected zone by swiping left or right on the screen similar to swiping on an iPhone. As shown in the figure above, a dot appears on the screen for each room temperature sensor that is paired with the main hub thermostat. If an additional room temperature sensor was successfully paired with the main hub thermostat, the user would automatically see another dot appear on this screen and would be able to immediately update the new zone’s information.From the main operational screen, the user can access the settings by tapping the settings button in the top right corner of the screen. There are three main settings screens: the Wi-Fi, calibration, and network screens.</p>
+				  </div>
+				</div>
+				<div class="carousel-item">
+			      <div class="image-wrapper">
+				  	<img id="HMI-3" src="images/wifi-settings-cropped.jpg">
+				  </div>
+				  <div class="text-wrapper">
+				    <h5>Wi-Fi Settings</h5>
+				    <p>The Wi-Fi settings screen simply allows the users to securely connect to a Wi-Fi network in order to unlock the IoT capabilities of the device described later in this section. The device will store the network credentials for up to five networks and will automatically switch to the next available network in the event that the current network becomes unavailable in order to maintain the main hub thermostat’s connection with the internet.</p>
+				  </div>
+				</div>
+				<div class="carousel-item">
+			      <div class="image-wrapper">
+				  	<img id="HMI-2" src="images/calibration-cropped.jpg">
+				  </div>
+				  <div class="text-wrapper">
+				    <h5>Temperature Calibration</h5>
+				    <p>The calibration settings screen allows users to calibrate the temperature sensor corresponding to each zone. This screen is necessary because the LM335 temperature sensors may carry an error of ±3°K. However, the operation of the device remains linear regardless of the residual error. Thus, the calibration screen allows the user to teach the main hub thermostat the exact error value to expect from each respective zone. Following calibration, the main hub stores the error for each zone and compensates all further readings by offsetting the measured temperature values by the appropriate residual error ultimately resulting in very accurate temperature control.</p>
+				  </div>
+				</div>
+			    <div class="carousel-item">
+			      <div class="image-wrapper">
+				  	<img id="HMI-2" src="images/HMI-2-cropped.jpg">
+				  </div>
+				  <div class="text-wrapper">
+				    <h5>Zone Network</h5>
+				    <p>The network settings screen provides the user with data about each node on the wireless network. Just as on the main operational screen, the user can swipe through each of the zones to see how many vents are paired with each zone and even check the battery state of each room temperature sensor and smart vent on the network. If the user sees that the battery symbol for a particular device is drawn in the colour red, it means the batteries in the device is getting close to dying and the user should replace the batteries at their earliest convenience.</p>
+				  </div>
+				</div>
+				<div class="carousel-item">
+				  <div class="image-wrapper">
+				  	<img id="web-interface" src="images/web-interface.png">
+				  </div>
+				  <div class="text-wrapper">
+				    <h5>Online Management</h5>
+				    <p>To provide IoT functionality, a custom website complete with a secure user login was created to allow users to read and adjust the temperature of every zone in their house. The user 	simply logs in to the website using the login page. Following successful login, the user is presented with the current temperature of each zone in addition to the allowable 			   temperature range for each zone as shown in the figure above. Users can measure or adjust the temperature settings of their home from thousands of kilometers away.</p>
+				  </div>
+				</div>
+			  </div>
+			  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+			</div>
+	</div>
+</section>
+
+<section class="medium">
+	<h1>Room Temperature Sensor</h1>
+	
+	<div class="content-wrapper">
+		<img id="cap-3-img" src="images/capstone-3-cropped.jpg">
+		<p>The primary functionalities of the room temperature sensor devices are to pair with the main hub thermostat to establish an independently controlled zone, pair with smart vents that are going to be installed in its respective zone, regularly provide updates about the temperature conditions in the zone to the main hub thermostat, and relay command signals from the main hub thermostat to its vents as required. The finished design of the room temperature sensor is shown in the Figure above.
+		These devices essentially act as the managers of a designated zone by relaying information between the main hub thermostat and the vents associated with the zone.</p>
+	</div>
+	
+	<div class="content-wrapper">
+		<div>
+			<img id="cap-4-img" src="images/capstone-4.png">
+			<img id="cap-5-img" src="images/capstone-5.png">
+		</div>
+		<p>	The final circuit schematic of the room temperature sensor is shown above. Also shown above is the breadboard verison of the room temperature sensor. This breadboard verison
+			utilizes an Arduino microcontroller rather than the stripped Atmega32 microcontroller powering it
+			in order to confirm that the developed code and designed circuit works as desired before transfering the design to a PCB.</p>
+	</div>
+
+	<div class="content-wrapper">
+		<img id="cap-6-img" src="images/capstone-6.jpg">
+		<p> The designed Eagle CAD file and the coresponding physical printed PCB for the room temperature sensor are shown above. This custom PCB board uses 0603 (mil) surface mount passive components and
+			was printed by JLC PCB.</p>
+	</div>
+
+</section>
+
+
+<section class="light">
+	<h1>Smart Vent</h1>
+	<div class="content-wrapper">
+		<div>
+			<img id="vent1" src="images/vent.jpg">
+			<img id="vent2" src="images/vent-2.jpg">
+		</div>
+		
+		<p> The primary functionality of the smart vent devices is to implement the dampers associated with each zone. These smart vents are actuated (open and closed) using a 3.3V servo motor and is given
+			commands to open or close wirelessly from the main temperature thermostat indirectly through the room temperature sensors (or directly from the main temperature thermostat if the smart vents
+			are in the same zone as the main hub thermostat). These smart vents are inserted directly into the vents already installed in houses to provide the retrofit and non-invasive solution
+			desired by the team. This means that consumers do not need to replace or modify their existing vents - simply insert the smart vent module behind the existing vent.
+		</p>
+	</div>
+
+	<div class="content-wrapper">
+		<div>
+			<img id="vent-model-1" src="images/vent-model-1.png">
+			<img id="vent-model-2" src="images/vent-model-2.png">
+		</div>
+		<p>The CAD models of the 3D printed vent are shown above. This custom printed part was printed using a high quality polymer, if this project was to be put into production a
+			plastic mold would be used to greatly reduce the production time and cost.</p>
+	</div>
+
+</section>
+
+<section class="dark">
+	<h1>Proof of Design</h1>
+	<div class="content-wrapper">
+		<div>
+			<img id="proof-1" src="images/proof-1.jpg">
+			<img id="proof-2" src="images/proof-2.jpg">
+		</div>
+		<p> To prove the state-of-the-art design of the Intelligent IoT HVAC Control System a house model complete with real ventilation, insulation and a space heater to represent a furnace 
+			was used to simulate a full scale house. As shown in the images above, two seperate zones with two different set temperatures connected to the same heating source are simulated. 
+			The model simulation results worked to the teams deisgned specification as the furnace was turned on and off in parallel with the vents opening and closing independently  
+			to create two temperature zones.
+			</p>
+	</div>
+
+</section>
+
+
+<footer class="dark">
+	<div class="footer-wrapper">
+	    <div>
+	    	<p> The code running on each device can be found at: <a href="https://github.com/ericparker144/CapstoneFirmware"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
+	      <p> This website was developed using Bootstrap and jQuery along with HTML, CSS and Javascript. Please feel free to contact us using any of the links below.</p>  
+	    </div>
+
+	    <div class="icons">
+	        <a href=""><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>
+	        <a href=""><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
+	        <a href=""><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
+	    </div>
+    <div>
+      <p>Copyright 2018</p>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
